@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beat me in Snake Arena</title>
+<meta name="description" content="A friend challenged you in Snake Arena. Same apples, same run — can you beat the score?">
+<meta property="og:title" content="Beat me in Snake Arena 🐍">
+<meta property="og:description" content="Same apples, same run. Can you beat my score?">
+<meta name="apple-itunes-app" content="app-id=6764529996">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lagoon: #1e8fb8; --lagoon-deep: #0f5f86; --sun: #ffd23f; --sun-edge: #d9a400;
+    --mint: #5fe0b3; --coral: #ff7a6b; --ink: #0b2a3a; --text: #ffffff; --muted: rgba(255,255,255,.75);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    font-family: "SF Pro Rounded", ui-rounded, "Nunito", system-ui, sans-serif;
+    background: linear-gradient(180deg, #2aa6cf 0%, var(--lagoon) 45%, var(--lagoon-deep) 100%);
+    color: var(--text); display: flex; justify-content: center; padding: 24px 16px 40px;
+  }
+  main { width: 100%; max-width: 420px; text-align: center; }
+  .icon { width: 96px; height: 96px; border-radius: 22px; margin: 12px auto 18px; display: block;
+          box-shadow: 0 8px 0 rgba(0,0,0,.18); background: var(--sun); }
+  h1 { font-size: 30px; font-weight: 900; margin: 0 0 6px; line-height: 1.15; }
+  .sub { color: var(--muted); font-weight: 700; margin: 0 0 22px; }
+  .card { background: rgba(255,255,255,.14); border-radius: 22px; padding: 18px; margin-bottom: 18px;
+          box-shadow: 0 6px 0 rgba(0,0,0,.12); }
+  .score { font-size: 64px; font-weight: 900; color: var(--sun); line-height: 1; margin: 6px 0; }
+  .mode { font-weight: 800; color: var(--mint); }
+  .btn { display: block; width: 100%; border: 0; border-radius: 20px; padding: 16px; font: inherit;
+         font-size: 20px; font-weight: 900; text-decoration: none; cursor: pointer; margin-bottom: 12px; }
+  .btn-sun { background: var(--sun); color: var(--ink); box-shadow: 0 6px 0 var(--sun-edge); }
+  .btn-mint { background: var(--mint); color: var(--ink); box-shadow: 0 6px 0 #2fae84; }
+  .btn:active { transform: translateY(4px); box-shadow: none; }
+  .note { font-size: 13px; color: var(--muted); font-weight: 700; margin-top: 4px; }
+  .ok { color: var(--mint); }
+  footer { margin-top: 26px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <img class="icon" src="../icon.png" alt="" onerror="this.style.display='none'">
+  <h1 id="title">Beat me in Snake Arena!</h1>
+  <p class="sub">Same apples, same run. Can you beat the score?</p>
+
+  <div class="card">
+    <div id="who">A friend scored</div>
+    <div class="score" id="score">–</div>
+    <div class="mode" id="mode"></div>
+  </div>
+
+  <a class="btn btn-sun" id="open" href="#">Play this run</a>
+  <a class="btn btn-mint" id="store" href="https://apps.apple.com/app/id6764529996">Get Snake Arena — free</a>
+  <p class="note" id="copied">Tip: install the app, open it, and the challenge starts by itself.</p>
+
+  <footer>Snake Arena · GratWerk · Free on the App Store</footer>
+</main>
+<script>
+  // Liest m (Modus), s (Seed), x (Score), n (Name), t (Sekunden) aus dem Link.
+  var q = new URLSearchParams(location.search);
+  var modes = { classic: "Classic", timeattack: "Time Attack", hardcore: "Hardcore", maze: "Maze",
+                endless: "Endless", night: "Night", shrinking: "Shrinking", bossrush: "Boss Rush",
+                earthquake: "Earthquake", zen: "Zen", chaos: "Chaos" };
+  var name = (q.get("n") || "").replace(/[^\p{L}\p{N} ]/gu, "").slice(0, 16);
+  var score = parseInt(q.get("x") || "0", 10) || 0;
+  var mode = modes[(q.get("m") || "").toLowerCase()] || "Classic";
+  document.getElementById("who").textContent = name ? name + " scored" : "A friend scored";
+  document.getElementById("score").textContent = score;
+  document.getElementById("mode").textContent = "in " + mode;
+  if (name) document.getElementById("title").textContent = "Beat " + name + " in Snake Arena!";
+
+  // Mit installierter App: derselbe Link als App-Link (snake://challenge?…).
+  var appLink = "snake://challenge" + location.search;
+  document.getElementById("open").href = appLink;
+
+  // Ohne App: Herausforderung in die Zwischenablage, damit die App sie beim
+  // ersten Start findet. Nur auf Knopfdruck (Browser erlauben es nur dann).
+  function copyChallenge() {
+    var text = location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        var n = document.getElementById("copied");
+        n.textContent = "Challenge saved — open Snake Arena after installing and it starts right away.";
+        n.className = "note ok";
+      }).catch(function () {});
+    }
+  }
+  document.getElementById("store").addEventListener("click", copyChallenge);
+  document.getElementById("open").addEventListener("click", function () {
+    copyChallenge();
+    // Wenn die App fehlt, bleibt die Seite stehen — dann zum Store.
+    setTimeout(function () { location.href = "https://apps.apple.com/app/id6764529996"; }, 1500);
+  });
+</script>
+</body>
+</html>

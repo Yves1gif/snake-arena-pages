@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "events": [
+    {
+      "id": "2026-10-retro-week",
+      "icon": "🕹",
+      "title": {
+        "en": "Retro Week",
+        "de": "Retro-Woche",
+        "fr": "Semaine rétro",
+        "es": "Semana retro",
+        "it": "Settimana retrò"
+      },
+      "subtitle": {
+        "en": "Play 5 rounds of Classic",
+        "de": "Spiele 5 Runden Classic"
+      },
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "mode": "Classic",
+      "rounds": 5,
+      "rewardSkinId": "pixelRetro"
+    },
+    {
+      "id": "2026-11-neon-nights",
+      "icon": "🌃",
+      "title": {
+        "en": "Neon Nights",
+        "de": "Neon-Nächte",
+        "fr": "Nuits néon",
+        "es": "Noches de neón",
+        "it": "Notti al neon"
+      },
+      "subtitle": {
+        "en": "Play 5 rounds of Night mode",
+        "de": "Spiele 5 Runden im Nacht-Modus"
+      },
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "mode": "Night",
+      "rounds": 5,
+      "rewardSkinId": "neonbandit"
+    },
+    {
+      "id": "2026-11-quake-week",
+      "icon": "🌋",
+      "title": {
+        "en": "Quake Week",
+        "de": "Beben-Woche",
+        "fr": "Semaine des séismes",
+        "es": "Semana del terremoto",
+        "it": "Settimana del terremoto"
+      },
+      "subtitle": {
+        "en": "Play 5 rounds of Earthquake",
+        "de": "Spiele 5 Runden Erdbeben"
+      },
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "mode": "Earthquake",
+      "rounds": 5,
+      "rewardSkinId": "lavaCrawler"
+    },
+    {
+      "id": "2026-11-zen-garden",
+      "icon": "🌿",
+      "title": {
+        "en": "Zen Garden",
+        "de": "Zen-Garten",
+        "fr": "Jardin zen",
+        "es": "Jardín zen",
+        "it": "Giardino zen"
+      },
+      "subtitle": {
+        "en": "Play 5 calm rounds of Zen",
+        "de": "Spiele 5 ruhige Runden Zen"
+      },
+      "start": "2026-11-16",
+      "end": "2026-11-22",
+      "mode": "Zen",
+      "rounds": 5,
+      "rewardSkinId": "forestCamo"
+    },
+    {
+      "id": "2026-11-chaos-cup",
+      "icon": "🌀",
+      "title": {
+        "en": "Chaos Cup",
+        "de": "Chaos-Cup",
+        "fr": "Coupe du chaos",
+        "es": "Copa del caos",
+        "it": "Coppa del caos"
+      },
+      "subtitle": {
+        "en": "Play 5 rounds of Chaos",
+        "de": "Spiele 5 Runden Chaos"
+      },
+      "start": "2026-11-23",
+      "end": "2026-11-29",
+      "mode": "Chaos",
+      "rounds": 5,
+      "rewardSkinId": "glitch"
+    }
+  ]
+}
